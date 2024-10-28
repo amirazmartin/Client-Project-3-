@@ -203,7 +203,7 @@ thead th {
 
     /* Ensure images fit within table cells */
 td img {
-    max-width: 100%; /* Prevents images from exceeding the cell width */
+    width: 100%; /* Prevents images from exceeding the cell width */
     height: auto;    /* Maintains aspect ratio */
     display: block;  /* Ensures no overflow */
 }
