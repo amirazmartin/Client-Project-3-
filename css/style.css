@@ -1,0 +1,282 @@
+/* General reset for margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Dark Mode Default Variables */
+:root {
+    --background-color: #121212;
+    --general-text-color: #e0e0e0;
+    --header-bg-color: #1e1e1e;
+    --header-text-color: #f9f9f9;
+    --table-bg-color: #1e1e1e;
+    --table-text-color: #ffffff;
+    --link-color: #4a90e2;
+    --highlight-color: #333333; /* Used in progress bar and hover effects */
+}
+
+/* Light Mode Overrides */
+body.light-mode {
+    --background-color: #ffffff;
+    --general-text-color: #333333;
+    --header-bg-color: #f0f0f0;
+    --header-text-color: #000000;
+    --table-bg-color: #f0f0f0;
+    --table-text-color: #000000;
+    --link-color: #0066cc;
+}
+
+/* Apply Background and Text Colors Globally */
+body {
+    background-color: var(--background-color);
+    color: var(--general-text-color);
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+    position: sticky;
+    top: 0;
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color);
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--general-text-color);
+}
+
+/* Section Background Colors */
+.section1 { background-color: #2a2a2a; }
+.section2 { background-color: var(--highlight-color); }
+.section3 { background-color: #3d3d3d; }
+
+/* Content Section Styling */
+.content-section {
+    padding: 50px 0;
+    border-bottom: 1px solid #444;
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Table Styling */
+.table-container {
+    overflow-x: auto;
+    display:block
+    width: 100%;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed; /* Forces table cells to stay within width */
+    border-collapse: collapse;
+    background-color: var(--table-bg-color);
+}
+
+th, td {
+    color: var(--table-text-color);
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+/* Table Row Alternating Colors */
+tbody tr:nth-child(odd) { background-color: #1e1e1e; }
+tbody tr:nth-child(even) { background-color: #2a2a2a; }
+
+/* Sticky Table Header */
+thead th {
+    position: sticky;
+    top: 0;
+    background-color: var(--highlight-color);
+    color: var(--table-text-color);
+    z-index: 10;
+}
+
+/* Floating Action Button (FAB) Styling */
+.fab-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1001;
+}
+
+.fab {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--link-color);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.fab:hover { background-color: #357ABD; }
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: var(--highlight-color);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background-color: var(--link-color);
+    width: 0;
+    transition: width 1s ease-in-out;
+}
+
+/* Circular Athlete Profile Picture */
+.profile-picture {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    border: 3px solid #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-picture:hover {
+    transform: scale(1.1);
+}
+
+/* Mobile Styling for Table Reflow */
+@media (width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+        width: 100%;
+        padding: 8px; /* Reduces padding on mobile for more space */
+        word-wrap: break-word; /* Allows long words or URLs to wrap */
+    }
+
+    thead { display: none; }
+
+    tr {
+        margin-bottom: 15px;
+        border: 1px solid #444;
+        padding: 10px;
+        background-color: #1e1e1e;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        border: none;
+        border-bottom: 1px solid #333;
+        word-wrap: break-word; /* Allows long words to wrap to the next line */
+    white-space: normal;   /* Ensures text wraps within the cell */
+    overflow: hidden;      /* Hides any overflow within the cell */
+    text-overflow: ellipsis; /* Adds "..." if text is cut off (optional) */
+    }
+
+    /* Ensure images fit within table cells */
+td img {
+    max-width: 100%; /* Prevents images from exceeding the cell width */
+    height: auto;    /* Maintains aspect ratio */
+    display: block;  /* Ensures no overflow */
+}
+
+    td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: #ccc;
+    }
+
+    td:last-child { border-bottom: none; }
+}
+
+/* Default (Dark Mode) Theme */
+/* Default Dark Mode Theme */
+/* Default Dark Mode Theme */
+:root {
+    --background-color: #121212;
+    --general-text-color: #e0e0e0; /* Light text outside tables */
+    --header-bg-color: #1e1e1e;
+    --header-text-color: #e0e0e0; /* Light header text */
+    --table-text-color: #ffffff; /* Table text stays white */
+    --link-color: #4a90e2;
+}
+
+/* Light Mode Theme */
+body.light-mode {
+    --background-color: #ffffff;
+    --general-text-color: #333333; /* Dark text outside tables */
+    --header-bg-color: #f0f0f0;
+    --header-text-color: #000000; /* Dark header text */
+    --table-text-color: #ffffff; /* Table text stays white */
+    --link-color: #0066cc;
+}
+
+/* Apply Variables Globally */
+body {
+    background-color: var(--background-color);
+    color: var(--general-text-color); /* General text color */
+    font-family: Arial, sans-serif;
+}
+
+/* Header Styling */
+header {
+    background-color: var(--header-bg-color);
+    color: var(--header-text-color); /* Header-specific text color */
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+}
+
+/* General Content Text Styling */
+h1, h2, h3, p, .content-section, footer, main, section {
+    color: var(--general-text-color); /* Non-table text follows theme */
+}
+
+/* Table Styling */
+.table-container, table {
+    background-color: var(--background-color);
+}
+
+th, td {
+    color: var(--table-text-color); /* Table-specific text color */
+    padding: 12px;
+    border: 1px solid white;
+    text-align: left;
+}
+
+/* Link Colors */
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    text-decoration: underline;
+}
